@@ -1,0 +1,17 @@
+{
+    "require": {
+        "php": "^7.3|^8.0",
+        "deeplcom/deepl-php": "^1.5",
+        "symfony/http-client": "^5.4",
+        "nyholm/psr7": "^1.8",
+        "vlucas/phpdotenv": "^5.5"
+    },
+    "config": {
+        "allow-plugins": {
+            "php-http/discovery": true
+        }
+    },
+    "require-dev": {
+        "symfony/var-dumper": "^5.4"
+    }
+}

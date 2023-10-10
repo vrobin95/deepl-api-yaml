@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="w3.css">
+    <title>DeepL Simple App</title>
+</head>
+<body>
+<header class="w3-container w3-teal"><h1>DeepL Simple API App</h1></header>
+<div class="w3-container">
+    <input type="file" id="file" name="file" accept=".yml">
+    <br>
+    <br>
+    <button id="translate">Translate</button>
+    <button id="clear">Clear</button>
+    <br>
+    <br>
+    <span id="output"></span>
+</div>
+</body>
+</html>
+
+<script type="application/javascript">
+    //document ready
+    document.addEventListener('DOMContentLoaded', function () {
+        //clear button event
+        var buttonClear = document.getElementById('clear');
+        buttonClear.addEventListener('click', function () {
+            document.getElementById('file').value = '';
+            document.getElementById('output').innerHTML = '';
+        });
+
+        //translate button event
+        var buttonTranslate = document.getElementById('translate');
+        buttonTranslate.addEventListener('click', function () {
+            document.getElementById('output').innerHTML = '';
+            //send file to server for translation and return error if needed
+            //app.php action /api
+            //else return 'OK'
+            var file = document.getElementById('file').files[0];
+            var formData = new FormData();
+            formData.append('file', file);
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', '/api', true);
+            xhr.onload = function () {
+                if (xhr.status === 200) {
+                    document.getElementById('output').innerHTML = 'Done!';
+                } else {
+                    //error
+                    document.getElementById('output').innerHTML = 'Error'+ xhr.status + ': ' + xhr.statusText;
+                }
+            };
+            xhr.send(formData);
+        });
+    });
+</script>
