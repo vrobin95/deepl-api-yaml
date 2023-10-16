@@ -15,7 +15,14 @@
     <button id="clear">Clear</button>
     <br>
     <br>
-    <span id="output"></span>
+    <span id="output" style="
+        display: none;
+        padding: 7px 14px;
+        color: #006cb4;
+        background: #ceecff;
+        font-weight: bold;
+        border: 1px solid #006cb4;"
+    ></span>
 </div>
 </body>
 </html>
@@ -33,6 +40,7 @@
         //translate button event
         var buttonTranslate = document.getElementById('translate');
         buttonTranslate.addEventListener('click', function () {
+            document.getElementById('output').style.display = "none"
             document.getElementById('output').innerHTML = '';
             //send file to server for translation and return error if needed
             //app.php action /api
@@ -49,6 +57,7 @@
                     //error
                     document.getElementById('output').innerHTML = 'Error'+ xhr.status + ': ' + xhr.statusText;
                 }
+                document.getElementById('output').style.display = "inline-block";
             };
             xhr.send(formData);
         });

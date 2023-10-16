@@ -70,7 +70,7 @@ class App
         echo 'File translated successfully';
     }
 
-    public function translateFile($inputFile, $outputFile, Translator $translator, $lang = 'en-US')
+    public function translateFile($inputFile, $outputFile, Translator $translator, $lang = 'es')
     {
         $inputFile = fopen($inputFile, 'r');
         $outputFile = fopen($outputFile, 'w');
