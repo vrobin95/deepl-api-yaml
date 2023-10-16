@@ -95,8 +95,16 @@ class App
 
                 //checking if the translation start by an " but not end by one
                 if (substr($tradText, 0, 1) === '"' && substr($tradText, -1) !== '"') {
-                    //adding " at the end of the translation
-                    $tradText .= '"';
+
+                    //if ending with '".'
+                    if (substr($tradText, -2) === '".') {
+                        //removing the last 2 characters
+                        $tradText = substr($tradText, 0, -2);
+                        $tradText .= '."';
+                    } else {
+                        //adding " at the end of the translation
+                        $tradText .= '"';
+                    }
                 }
 
                 fwrite($outputFile, $name . (!empty($tradText) ? ': ' . $tradText . PHP_EOL : ''));
